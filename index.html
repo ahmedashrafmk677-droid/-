@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فيتال كير - دليلك الشامل للصحة واللياقة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0f766e',
+                        secondary: '#14b8a6',
+                        accent: '#f59e0b',
+                        dark: '#1e293b',
+                        light: '#f0fdfa',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; }
+        .glass { background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); }
+        .muscle-map { transition: all 0.3s ease; }
+        .muscle-map:hover { filter: drop-shadow(0 0 10px rgba(20,184,166,0.5)); }
+        .exercise-card { transition: transform 0.3s ease; }
+        .exercise-card:hover { transform: translateY(-5px); }
+        .tab-active { border-bottom: 3px solid #0f766e; color: #0f766e; font-weight: 700; }
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .nutrition-card { background: linear-gradient(135deg, #f0fdfa 0%, #ffffff 100%); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <nav class="fixed w-full z-50 glass border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-3 cursor-pointer" onclick="showSection('home')">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white">
+                        <i class="fas fa-heartbeat text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-primary">فيتال كير</span>
+                </div>
+                <div class="hidden md:flex space-x-8 space-x-reverse">
+                    <button onclick="showSection('home')" class="nav-btn text-gray-700 hover:text-primary px-3 py-2 rounded-md font-medium transition">الرئيسية</button>
+                    <button onclick="showSection('muscles')" class="nav-btn text-gray-700 hover:text-primary px-3 py-2 rounded-md font-medium transition">العضلات</button>
+                    <button onclick="showSection('exercises')" class="nav-btn text-gray-700 hover:text-primary px-3 py-2 rounded-md font-medium transition">التمارين</button>
+                    <button onclick="showSection('nutrition')" class="nav-btn text-gray-700 hover:text-primary px-3 py-2 rounded-md font-medium transition">التغذية</button>
+                    <button onclick="showSection('diseases')" class="nav-btn text-gray-700 hover:text-primary px-3 py-2 rounded-md font-medium transition">الأمراض المزمنة</button>
+                    <button onclick="showSection('calculator')" class="nav-btn text-gray-700 hover:text-primary px-3 py-2 rounded-md font-medium transition">الحاسبات</button>
+                </div>
+                <button onclick="toggleMobileMenu()" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <button onclick="showSection('home')" class="block w-full text-right px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">الرئيسية</button>
+                <button onclick="showSection('muscles')" class="block w-full text-right px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">العضلات</button>
+                <button onclick="showSection('exercises')" class="block w-full text-right px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">التمارين</button>
+                <button onclick="showSection('nutrition')" class="block w-full text-right px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">التغذية</button>
+                <button onclick="showSection('diseases')" class="block w-full text-right px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">الأمراض المزمنة</button>
+                <button onclick="showSection('calculator')" class="block w-full text-right px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">الحاسبات</button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="pt-24 pb-12 min-h-screen content-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h1 class="text-5xl md:text-6xl font-bold text-dark mb-6">صحتك تبدأ من <span class="text-primary">هنا</span></h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">دليلك الطبي الشامل للتمارين الرياضية والتغذية العلاجية الدقيقة لجميع الفئات العمرية والحالات الصحية</p>
+                <div class="flex justify-center gap-4 flex-wrap">
+                    <button onclick="showSection('exercises')" class="bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-secondary transition shadow-lg hover:shadow-xl">
+                        ابدأ تمارينك <i class="fas fa-dumbbell mr-2"></i>
+                    </button>
+                    <button onclick="showSection('nutrition')" class="bg-white text-primary border-2 border-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-light transition">
+                        نظامك الغذائي <i class="fas fa-apple-alt mr-2"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center">
+                    <div class="text-4xl font-bold text-primary mb-2">600+</div>
+                    <div class="text-gray-600">عضلة هيكلية</div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center">
+                    <div class="text-4xl font-bold text-secondary mb-2">150+</div>
+                    <div class="text-gray-600">تمرين موثق</div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center">
+                    <div class="text-4xl font-bold text-accent mb-2">6</div>
+                    <div class="text-gray-600">فئات عمرية</div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center">
+                    <div class="text-4xl font-bold text-red-500 mb-2">3</div>
+                    <div class="text-gray-600">برامج علاجية</div>
+                </div>
+            </div>
+
+            <h2 class="text-3xl font-bold text-center mb-8 text-dark">الفئات العمرية والأقسام الصحية</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div onclick="showSection('exercises')" class="bg-gradient-to-br from-blue-400 to-blue-600 p-6 rounded-2xl text-white cursor-pointer hover:scale-105 transition shadow-lg">
+                    <i class="fas fa-child text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">مكتبة التمارين</h3>
+                    <p class="text-sm opacity-90">دليل التمارين مقسم حسب العضلات</p>
+                </div>
+                <div onclick="showSection('muscles')" class="bg-gradient-to-br from-primary to-secondary p-6 rounded-2xl text-white cursor-pointer hover:scale-105 transition shadow-lg">
+                    <i class="fas fa-user text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">خريطة العضلات</h3>
+                    <p class="text-sm opacity-90">استكشف العضلات التشريحية ووظائفها</p>
+                </div>
+                <div onclick="showSection('nutrition')" class="bg-gradient-to-br from-purple-500 to-purple-700 p-6 rounded-2xl text-white cursor-pointer hover:scale-105 transition shadow-lg">
+                    <i class="fas fa-apple-alt text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">الأنظمة الغذائية</h3>
+                    <p class="text-sm opacity-90">حاسبة السعرات والوجبات المصممة علمياً</p>
+                </div>
+                <div onclick="showSection('diseases')" class="bg-gradient-to-br from-red-400 to-red-600 p-6 rounded-2xl text-white cursor-pointer hover:scale-105 transition shadow-lg">
+                    <i class="fas fa-heartbeat text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">الأمراض المزمنة</h3>
+                    <p class="text-sm opacity-90">برامج آمنة موثقة طبياً للحالات الخاصة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="muscles" class="hidden pt-24 pb-12 min-h-screen bg-gray-50 content-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-4 text-dark">خريطة العضلات الهيكلية</h2>
+            <p class="text-center text-gray-600 mb-12">تعرف على وظائف العضلات والتمارين المستهدفة لكل منها</p>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+                <div class="bg-white rounded-3xl shadow-xl p-8 sticky top-24">
+                    <svg viewBox="0 0 400 600" class="w-full h-auto">
+                        <ellipse cx="200" cy="80" rx="35" ry="40" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/>
+                        <rect x="190" y="120" width="20" height="30" fill="#e2e8f0" stroke="#94a3b8"/>
+                        
+                        <path id="muscle-chest" onclick="selectMuscle('chest')" class="muscle-map cursor-pointer animate-pulse" 
+                              d="M 160 150 Q 200 140 240 150 L 240 200 Q 200 210 160 200 Z" 
+                              fill="#fecaca" stroke="#ef4444" stroke-width="2"/>
+                        <text x="200" y="180" text-anchor="middle" class="text-xs pointer-events-none font-bold" fill="#991b1b">الصدر</text>
+                        
+                        <circle id="muscle-shoulders" onclick="selectMuscle('shoulders')" class="muscle-map cursor-pointer" cx="140" cy="155" r="25" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2"/>
+                        <circle id="muscle-shoulders2" onclick="selectMuscle('shoulders')" class="muscle-map cursor-pointer" cx="260" cy="155" r="25" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2"/>
+                        <text x="140" y="160" text-anchor="middle" class="pointer-events-none text-xs" fill="#1e40af">كتف</text>
+                        <text x="260" y="160" text-anchor="middle" class="pointer-events-none text-xs" fill="#1e40af">كتف</text>
+                        
+                        <rect id="muscle-biceps" onclick="selectMuscle('biceps')" class="muscle-map cursor-pointer" x="110" y="180" width="25" height="60" rx="10" fill="#bbf7d0" stroke="#22c55e" stroke-width="2"/>
+                        <rect id="muscle-biceps2" onclick="selectMuscle('biceps')" class="muscle-map cursor-pointer" x="265" y="180" width="25" height="60" rx="10" fill="#bbf7d0" stroke="#22c55e" stroke-width="2"/>
+                        <text x="200" y="215" text-anchor="middle" class="pointer-events-none text-xs" fill="#166534">بايسبس (الذراع)</text>
+                        
+                        <rect id="muscle-abs" onclick="selectMuscle('abs')" class="muscle-map cursor-pointer" x="175" y="210" width="50" height="80" rx="5" fill="#fef08a" stroke="#eab308" stroke-width="2"/>
+                        <text x="200" y="250" text-anchor="middle" class="pointer-events-none font-bold" fill="#854d0e">بطن</text>
+                        
+                        <path id="muscle-quads" onclick="selectMuscle('quads')" class="muscle-map cursor-pointer" d="M 165 300 L 195 300 L 190 420 L 170 420 Z" fill="#fbcfe8" stroke="#ec4899" stroke-width="2"/>
+                        <path id="muscle-quads2" onclick="selectMuscle('quads')" class="muscle-map cursor-pointer" d="M 205 300 L 235 300 L 230 420 L 210 420 Z" fill="#fbcfe8" stroke="#ec4899" stroke-width="2"/>
+                        <text x="200" y="360" text-anchor="middle" class="pointer-events-none font-bold" fill="#9d174d">الأرجل / الفخذ</text>
+                    </svg>
+                    <p class="text-center text-sm text-gray-500 mt-4">انقر على (الصدر، الكتف، البطن، الفخذ) لتظهر التفاصيل بالجانب الآخر</p>
+                </div>
+
+                <div id="muscle-details" class="space-y-6">
+                    <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
+                        <i class="fas fa-hand-pointer text-6xl text-primary mb-4"></i>
+                        <h3 class="text-2xl font-bold text-dark mb-2">اختر عضلة</h3>
+                        <p class="text-gray-600">انقر على أي عضلة في الخريطة الملونة لعرض معلوماتها التشريحية والتمارين المستهدفة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="exercises" class="hidden pt-24 pb-12 min-h-screen content-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-4 text-dark">مكتبة التمارين الشاملة</h2>
+            <p class="text-center text-gray-600 mb-8">تمارين دقيقة لجميع العضلات والفئات العمرية</p>
+            
+            <div class="flex flex-wrap justify-center gap-2 mb-8 bg-white p-2 rounded-2xl shadow-md">
+                <button onclick="filterExercises('all')" class="filter-btn px-6 py-2 rounded-xl font-medium transition bg-primary text-white">الكل</button>
+                <button onclick="filterExercises('chest')" class="filter-btn px-6 py-2 rounded-xl font-medium transition text-gray-600 hover:bg-gray-100">الصدر</button>
+                <button onclick="filterExercises('back')" class="filter-btn px-6 py-2 rounded-xl font-medium transition text-gray-600 hover:bg-gray-100">الظهر</button>
+                <button onclick="filterExercises('legs')" class="filter-btn px-6 py-2 rounded-xl font-medium transition text-gray-600 hover:bg-gray-100">الساقين</button>
+                <button onclick="filterExercises('arms')" class="filter-btn px-6 py-2 rounded-xl font-medium transition text-gray-600 hover:bg-gray-100">الذراعين</button>
+            </div>
+
+            <div id="exercises-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
+        </div>
+    </section>
+
+    <section id="nutrition" class="hidden pt-24 pb-12 min-h-screen bg-gray-50 content-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-4 text-dark">الأنظمة الغذائية الدقيقة</h2>
+            <p class="text-center text-gray-600 mb-12">أنظمة غذائية علمية مخصصة حسب الهدف والحالة الصحية</p>
+
+            <div class="grid lg:grid-cols-3 gap-8 mb-12">
+                <div class="lg:col-span-1 bg-white rounded-3xl shadow-xl p-6 h-fit">
+                    <h3 class="text-2xl font-bold mb-6 text-primary"><i class="fas fa-calculator ml-2"></i>حاسبة السعرات</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">الوزن (كجم)</label>
+                            <input type="number" id="weight" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary" placeholder="70">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">الطول (سم)</label>
+                            <input type="number" id="height" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary" placeholder="175">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">العمر</label>
+                            <input type="number" id="age" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary" placeholder="30">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">الهدف</label>
+                            <select id="goal" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary">
+                                <option value="lose">خسارة وزن (-500 سعرة)</option>
+                                <option value="maintain">المحافظة على الوزن</option>
+                                <option value="gain">زيادة عضلات (+500 سعرة)</option>
+                            </select>
+                        </div>
+                        <button onclick="calculateCalories()" class="w-full bg-primary text-white py-3 rounded-lg font-bold hover:bg-secondary transition">
+                            احسب احتياجاتي
+                        </button>
+                    </div>
+                    <div id="calories-result" class="mt-6 hidden">
+                        <div class="bg-light p-4 rounded-xl border border-primary text-center">
+                            <div class="text-3xl font-bold text-primary" id="tdee-result">0</div>
+                            <div class="text-gray-600">سعرة حرارية مطلوبة يومياً</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="nutrition-card rounded-2xl shadow-lg p-6 border-r-4 border-green-500">
+                        <h3 class="text-2xl font-bold text-dark mb-2">نظام خسارة الوزن المقترح</h3>
+                        <p class="text-gray-600 mb-4">تقليل السعرات مع الحفاظ التام على حجم العضلات وقوتها.</p>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="bg-white p-3 rounded-lg shadow-sm border">
+                                <div class="text-sm font-bold text-green-600">الإفطار</div>
+                                <div class="text-sm">بيض مسلوق عدد 2 + خضار + نصف خبز أسمر</div>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg shadow-sm border">
+                                <div class="text-sm font-bold text-blue-600">الغداء</div>
+                                <div class="text-sm">صدر دجاج مشوي 150 جرام + طبق سلطة خضراء كبير + 6 ملاعق أرز أسمر</div>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg shadow-sm border">
+                                <div class="text-sm font-bold text-orange-600">العشاء</div>
+                                <div class="text-sm">علبة تونة مصفاة من الزيت + سلطة أو جبن قريش بالخيار</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="diseases" class="hidden pt-24 pb-12 min-h-screen content-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-4 text-dark">البرامج العلاجية الموثقة للأمراض المزمنة</h2>
+            <p class="text-center text-gray-600 mb-12">برامج رياضية وغذائية دقيقة لمرضى السكري وأمراض القلب وارتفاع الضغط</p>
+
+            <div class="grid lg:grid-cols-4 gap-6">
+                <div class="lg:col-span-1 space-y-3">
+                    <button onclick="selectDisease('diabetes')" class="w-full text-right p-4 rounded-xl bg-white shadow hover:shadow-md transition flex items-center gap-3 border-r-4 border-blue-500">
+                        <div class="font-bold">مرضى السكري</div>
+                    </button>
+                    <button onclick="selectDisease('heart')" class="w-full text-right p-4 rounded-xl bg-white shadow hover:shadow-md transition flex items-center gap-3 border-r-4 border-red-500">
+                        <div class="font-bold">أمراض القلب</div>
+                    </button>
+                </div>
+                <div id="disease-content" class="lg:col-span-3 bg-white rounded-3xl shadow-xl p-8">
+                    <div class="text-center py-12">
+                        <i class="fas fa-user-md text-6xl text-gray-300 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-600">اختر حالة مرضية من القائمة اليمنى</h3>
+                        <p class="text-gray-500">لعرض التوجيهات الرياضية والغذائية والتحذيرات الطبية المهمة لكل حالة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="hidden pt-24 pb-12 min-h-screen bg-gray-50 content-section">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-8 text-dark">الحاسبات الصحية والأرقام الحيوية</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-3xl shadow-xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 text-primary"><i class="fas fa-weight ml-2"></i>حاسبة كتلة الجسم BMI</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">الطول (سم)</label>
+                            <input type="number" id="bmi-height" class="w-full px-4 py-2 border rounded-lg" placeholder="175">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">الوزن (كجم)</label>
+                            <input type="number" id="bmi-weight" class="w-full px-4 py-2 border rounded-lg" placeholder="70">
+                        </div>
+                        <button onclick="calculateBMI()" class="w-full bg-primary text-white py-3 rounded-lg font-bold">احسب مؤشري</button>
+                    </div>
+                    <div id="bmi-result" class="mt-6 hidden bg-teal-50 p-4 rounded-xl border text-center">
+                        <div class="text-4xl font-bold text-primary mb-1" id="bmi-value">0</div>
+                        <div class="text-lg font-medium text-gray-700" id="bmi-status">---</div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 text-cyan-600"><i class="fas fa-tint ml-2"></i>حاسبة احتياج الماء اليومي</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">الوزن الحالي (كجم)</label>
+                            <input type="number" id="water-weight" class="w-full px-4 py-2 border rounded-lg" placeholder="70">
+                        </div>
+                        <button onclick="calculateWater()" class="w-full bg-cyan-600 text-white py-3 rounded-lg font-bold">احسب كمية المياه</button>
+                    </div>
+                    <div id="water-result" class="mt-6 hidden bg-cyan-50 p-4 rounded-xl border text-center">
+                        <div class="text-4xl font-bold text-cyan-700 mb-1" id="water-amount">0 لتر</div>
+                        <div class="text-sm text-gray-600" id="water-glasses">أي حوالي 0 أكواب يومياً</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-12 mt-12 border-t border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <span class="text-xl font-bold text-secondary">فيتال كير © 2026</span>
+            <p class="text-gray-400 text-sm mt-2">جميع الحقوق محفوظة. المعلومات للأغراض التوعوية والتعليمية فقط ولا تغني عن استشارة الطبيب.</p>
+        </div>
+    </footer>
+
+    <script>
+        // تغيير الأقسام البرمجية عند النقر
+        function showSection(sectionId) {
+            // إخفاء كافة الأقسام أولاً
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => sec.classList.add('hidden'));
+            
+            // إظهار القسم المطلوب
+            const activeSection = document.getElementById(sectionId);
+            if(activeSection) {
+                activeSection.classList.remove('hidden');
+            }
+            
+            // إغلاق قائمة الموبايل تلقائياً بعد الاختيار
+            document.getElementById('mobile-menu').classList.add('hidden');
+            
+            // القفز لأعلى الشاشة بسلاسة
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // فتح وإغلاق قائمة الهاتف المحمول
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // بيانات العضلات
+        const musclesData = {
+            chest: {
+                name: 'عضلات الصدر الكاملة',
+                function: 'مسؤولة عن دفع الأوزان للأمام، وحركات عظام الكتف والذراع للداخل.',
+                exercises: 'تمرين بنش برس بالبار (Bench Press)، تمرين الضغط (Push-ups)، تمرين التجميع بالدمبل.'
+            },
+            shoulders: {
+                name: 'عضلات الأكتاف والدالية',
+                function: 'تحريك الذراع في كافة الاتجاهات الدائرية وتثبيت المفصل العلوي.',
+                exercises: 'الضغط العلوي بالبار (Overhead Press)، الرفرفة الجانبية بالدمبلز.'
+            },
+            biceps: {
+                name: 'عضلات الذراع (البايسبس والترايسبس)',
+                function: 'مسؤولة عن ثني وبسط كوع اليد وحمل ورفع الأغراض.',
+                exercises: 'تمرين المرجحة للذراع (Barbell Curl)، تمرين الدفع للترايسبس.'
+            },
+            abs: {
+                name: 'عضلات البطن والكور',
+                function: 'ثني الجذع وحماية الظهر السفلي والعمود الفقري وتثبيت توازن الجسم.',
+                exercises: 'تمرين پلانك (Plank)، تمرين الطحن للبطن (Crunches).'
+            },
+            quads: {
+                name: 'عضلات الأرجل والفخذ الأمامي',
+                function: 'أكبر عضلات الجسم مسؤولة عن الحركة، المشي، القفز، وبسط الركبة.',
+                exercises: 'تمرين السكوات الأسطوري (Squats)، تمرين الطعنات (Lunges).'
+            }
+        };
+
+        function selectMuscle(muscleKey) {
+            const detailPanel = document.getElementById('muscle-details');
+            const data = musclesData[muscleKey];
+            if(data) {
+                detailPanel.innerHTML = `
+                    <div class="bg-white rounded-2xl shadow-lg p-6 border-t-4 border-primary fade-in">
+                        <h3 class="text-2xl font-bold text-primary mb-3">${data.name}</h3>
+                        <p class="text-gray-700 mb-4"><strong>الوظيفة الحركية:</strong> ${data.function}</p>
+                        <div class="bg-light p-4 rounded-xl">
+                            <span class="font-bold text-dark block mb-2"><i class="fas fa-dumbbell ml-1"></i> أهم التمارين المقترحة لها:</span>
+                            <p class="text-sm text-gray-600">${data.exercises}</p>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // مكتبة التمارين المصفاة
+        const exercisesList = [
+            { name: 'البنش برس بالبار (Bench Press)', muscle: 'chest', level: 'متوسط', eq: 'بار حديدي' },
+            { name: 'تمرين الضغط السويدي (Push-ups)', muscle: 'chest', level: 'مبتدئ', eq: 'وزن الجسم' },
+            { name: 'العقلة الأمامية (Pull-ups)', muscle: 'back', level: 'متقدم', eq: 'بار العقلة' },
+            { name: 'السحب الأرضي للظهر (Cable Row)', muscle: 'back', level: 'مبتدئ', eq: 'جهاز الكيبل' },
+            { name: 'السكوات الحر (Squats)', muscle: 'legs', level: 'متوسط', eq: 'بار / دمبلز' },
+            { name: 'المرجحة للبايسبس (Barbell Curl)', muscle: 'arms', level: 'مبتدئ', eq: 'بار' }
+        ];
+
+        function filterExercises(category) {
+            const grid = document.getElementById('exercises-grid');
+            grid.innerHTML = '';
+            
+            const filtered = category === 'all' ? exercisesList : exercisesList.filter(e => e.muscle === category);
+            
+            if(filtered.length === 0) {
+                grid.innerHTML = `<p class="text-gray-500 text-center col-span-3 py-6">سيتم إضافة المزيد من تمارين هذا القسم قريباً!</p>`;
+                return;
+            }
+
+            filtered.forEach(ex => {
+                grid.innerHTML += `
+                    <div class="bg-white p-5 rounded-2xl shadow border exercise-card fade-in">
+                        <h4 class="text-xl font-bold text-dark mb-2">${ex.name}</h4>
+                        <div class="text-sm text-gray-500 space-y-1">
+                            <div><i class="fas fa-tag ml-1"></i> القسم: ${ex.muscle}</div>
+                            <div><i class="fas fa-layer-group ml-1"></i> المستوى: ${ex.level}</div>
+                            <div><i class="fas fa-tools ml-1"></i> الأدوات: ${ex.eq}</div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // تشغيل فلتر التمارين الافتراضي عند الفتح
+        filterExercises('all');
+
+        // حاسبة السعرات الذكية
+        function calculateCalories() {
+            const w = parseFloat(document.getElementById('weight').value);
+            const h = parseFloat(document.getElementById('height').value);
+            const a = parseFloat(document.getElementById('age').value);
+            const goal = document.getElementById('goal').value;
+            
+            if(!w || !h || !a) {
+                alert('برجاء ملء كافة الحقول المتاحة أولاً بحساب السعرات');
+                return;
+            }
+
+            // معادلة Mifflin-St Jeor التقريبية للرجال
+            let bmr = (10 * w) + (6.25 * h) - (5 * a) + 5;
+            let tdee = bmr * 1.375; // نشاط متوسط خفيف
+
+            if(goal === 'lose') tdee -= 500;
+            if(goal === 'gain') tdee += 500;
+
+            document.getElementById('tdee-result').innerText = Math.round(tdee);
+            document.getElementById('calories-result').classList.remove('hidden');
+        }
+
+        // حاسبة كتلة الجسم BMI
+        function calculateBMI() {
+            const h = parseFloat(document.getElementById('bmi-height').value) / 100;
+            const w = parseFloat(document.getElementById('bmi-weight').value);
+
+            if(!h || !w) {
+                alert('برجاء إدخال الطول والوزن بشكل صحيح.');
+                return;
+            }
+
+            const bmi = w / (h * h);
+            let status = '';
+
+            if(bmi < 18.5) status = 'نحافة مفرطة - تحتاج لزيادة السعرات الصحية';
+            else if(bmi >= 18.5 && bmi < 25) status = 'وزن مثالي وطبيعي تماماً! حافظ عليه';
+            else if(bmi >= 25 && bmi < 30) status = 'زيادة في الوزن - ننصح بنظام خسارة الوزن والتمارين';
+            else status = 'سمنة - يجب مراجعة النظام الغذائي لحماية المفاصل والقلب';
+
+            document.getElementById('bmi-value').innerText = bmi.toFixed(1);
+            document.getElementById('bmi-status').innerText = status;
+            document.getElementById('bmi-result').classList.remove('hidden');
+        }
+
+        // حاسبة المياه
+        function calculateWater() {
+            const w = parseFloat(document.getElementById('water-weight').value);
+            if(!w) {
+                alert('برجاء إدخال وزنك الحالي.');
+                return;
+            }
+
+            // الاحتياج الأساسي: 35 مل لكل كيلوجرام
+            const amountInMl = w * 35;
+            const amountInLiters = (amountInMl / 1000).toFixed(1);
+            const glasses = Math.round(amountInMl / 250);
+
+            document.getElementById('water-amount').innerText = amountInLiters + " لتر";
+            document.getElementById('water-glasses').innerText = `أي حوالي ${glasses} أكواب مياه كبيرة يومياً`;
+            document.getElementById('water-result').classList.remove('hidden');
+        }
+
+        // برامج الأمراض المزمنة
+        const diseasesDetails = {
+            diabetes: {
+                title: 'البرنامج العلاجي لمرضى السكري',
+                text: 'التمارين الهوائية الخفيفة (كالمشي السريع والسباحة) لمدة 30 دقيقة تساعد الخلايا على امتصاص الأنسولين بشكل أفضل وخفض تراكمي السكر. يجب تناول الكربوهيدرات المعقدة كالشوفان والابتعاد الكامل عن السكريات السريعة والمشروبات الغازية.'
+            },
+            heart: {
+                title: 'البرنامج العلاجي لسلامة وصحة القلب',
+                text: 'التركيز التام على التمارين الهوائية منخفضة الشدة تحت مراقبة معدلات النبض. غذائياً، يجب اتباع النظام المتوسطي والاعتماد على زيت الزيتون البكر كمصدر رئيسي للدهون، وتناول الأسماك الغنية بالأوميجا 3، وتقليل الصوديوم والأملاح لأقل من نصف ملعقة يومياً.'
+            }
+        };
+
+        function selectDisease(key) {
+            const panel = document.getElementById('disease-content');
+            const d = diseasesDetails[key];
+            if(d) {
+                panel.innerHTML = `
+                    <div class="fade-in">
+                        <h3 class="text-2xl font-bold text-dark mb-4 border-b pb-2"><i class="fas fa-user-md text-primary ml-2"></i> ${d.title}</h3>
+                        <p class="text-gray-700 leading-relaxed text-lg mb-4">${d.text}</p>
+                        <div class="p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded text-sm text-yellow-800">
+                            <strong>⚠️ تنبيه طبي هام جداً:</strong> يجب مراجعة وطلب موافقة طبيبك المعالج المتابع للحالة قبل البدء في تطبيق أي أحمال تدريبية لضمان السلامة الكاملة.
+                        </div>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
